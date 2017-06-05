@@ -29,10 +29,11 @@ class ToneAnalyzer {
         .then((translatedText) => {
           this.analyze(translatedText)
             .then((response) => {
+              console.log(translatedText);
               const filteredResponse = response
                 .document_tone.tone_categories
                 .filter(element => element.category_id === 'emotion_tone');
-              resolve(filteredResponse);
+              resolve(filteredResponse[0].tones);
             })
             .catch(err => reject(err));
         })
